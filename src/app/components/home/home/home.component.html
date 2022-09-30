@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg p-3 bg-primary text-white">
+    <div class="container-fluid">
+        Bienvenido {{ user.name }}!
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+        </ul>
+        <div style="cursor: pointer;" (click)="salir()"><i class="fas fa-power-off" ></i> Salir</div>
+      </div>
+    </div>
+  </nav>
+
+<div class="container mt-3">
+    <div class="text-center"  *ngIf="loading">
+        <div class="spinner-border text-primary "  role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+    
+      <div class="text-center"  *ngIf="lists.length === 0 && !loading">
+        Sin datos
+      </div>
+      <div class="row">
+        <div class="col-8">
+            <table class="table mt-3" *ngIf="lists.length > 0">
+                <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Promedio</th>
+                  <th scope="col">Action</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let list of lists" 
+                [style.color]="list.Color"
+                
+                >
+                  <td scope="row">{{ list.ID }}</td>
+                  <td>
+                    {{ list.Name }}
+                  </td>
+                  <td [style.color]="list.bgColor">{{ list.grades }}%</td>
+                  <td>
+                      <i class="fas fa-eye"
+                        placement="top" ngbTooltip="Ver datos"
+                        style="cursor: pointer;" 
+                        (click)="viewdataList(list)"
+                        ></i>
+                  </td>
+                
+                </tr>
+                </tbody>
+              </table>
+         
+        </div>
+        <div class="col-4">
+            <div class="card" *ngIf="ViewData.Name"> 
+                <div class="card-body" style="background: rgb(242, 238, 238);">
+                  <p> Name: <span [style.color]="ViewData.Color">{{ ViewData.Name }}</span> </p>
+                  <p> Accessory: <span>{{ ViewData.Accessory }}</span> </p>
+                  <p> BreastSize: <span>{{ ViewData.BreastSize }}</span> </p>
+                  <p> Class: <span>{{ ViewData.Class }}</span> </p>
+                  <p> Club: <span>{{ ViewData.Club }}</span> </p>
+                  <p> Crush: <span>{{ ViewData.Crush }}</span> </p>
+                  <p> Hairstyle: <span>{{ ViewData.Hairstyle }}</span> </p>
+                  <p> ScheduleAction: <span>{{ ViewData.ScheduleAction }}</span> </p>
+                  <p> ScheduleDestination: <span>{{ ViewData.ScheduleDestination }}</span> </p>
+                  <p> Stockings: <span>{{ ViewData.Stockings }}</span> </p>
+                  <p> Strength: <span>{{ ViewData.Strength }}</span> </p>
+                  <p> grades: <span [style.color]="ViewData.bgColor">{{ ViewData.grades }}%</span> </p>
+                </div>
+              </div>
+        </div>
+      </div>
+
+   
+    
+</div>
